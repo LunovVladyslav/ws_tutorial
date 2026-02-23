@@ -4,3 +4,10 @@ spring:
 
 server:
   port: ${PORT:8080}
+
+admin:
+  username: ${ADMIN_USERNAME:admin}
+  password: ${ADMIN_PASSWORD:nexus2026admin}
+
+jwt:
+  secret: ${JWT_SECRET:NexusSuperSecretKeyForP2PPlatform2026}

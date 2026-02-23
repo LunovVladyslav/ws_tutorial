@@ -7,9 +7,21 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketTransportRegistration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import dev.lunov.p2p_server.security.AuthChannelInterceptor;
+import org.springframework.messaging.simp.config.ChannelRegistration;
+
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    @Autowired
+    private AuthChannelInterceptor authChannelInterceptor;
+
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        registration.interceptors(authChannelInterceptor);
+    }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
