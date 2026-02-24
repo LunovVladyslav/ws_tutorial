@@ -24,10 +24,20 @@ public class AuthChannelInterceptor implements ChannelInterceptor {
         StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
 
         if (accessor != null && StompCommand.CONNECT.equals(accessor.getCommand())) {
+            String token = null;
+            
             String authHeader = accessor.getFirstNativeHeader("Authorization");
+            if (authHeader == null) {
+                authHeader = accessor.getFirstNativeHeader("authorization");
+            }
             
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                String token = authHeader.substring(7);
+                token = authHeader.substring(7);
+            } else if (accessor.getPasscode() != null && !accessor.getPasscode().isEmpty()) {
+                token = accessor.getPasscode();
+            }
+
+            if (token != null) {
                 try {
                     String username = jwtUtil.extractUsername(token);
                     String role = jwtUtil.extractRole(token);
@@ -44,6 +54,8 @@ public class AuthChannelInterceptor implements ChannelInterceptor {
                     System.err.println("❌ Invalid WebSocket JWT token: " + e.getMessage());
                 }
             }
+            
+            System.err.println("❌ No Valid JWT Token Found For STOMP Connection. Headers received: " + accessor.getMessageHeaders());
             throw new IllegalArgumentException("No Valid JWT Token Found For STOMP Connection");
         }
         

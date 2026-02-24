@@ -108,11 +108,6 @@ public class SignalController {
         }
     }
 
-    @GetMapping("/peers")
-    @ResponseBody
-    public Map<String, Peer> getPeers() {
-        return peers;
-    }
 
     // --- Messaging relay ---
 
@@ -166,5 +161,11 @@ public class SignalController {
     @MessageMapping("/file/ice/{targetId}")
     public void fileIce(@DestinationVariable String targetId, String iceJson) {
         messagingTemplate.convertAndSend("/topic/file/ice/" + targetId, iceJson);
+    }
+
+    @GetMapping("/peers")
+    @ResponseBody
+    public Map<String, Peer> getPeers() {
+        return peers;
     }
 }
