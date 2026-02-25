@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Admin Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">Nexus Admin</div>
+      <nav>
+        <a href="#" class="nav-item active" data-target="users">👥 Users</a>
+        <a href="#" class="nav-item" data-target="peers">🔗 Active Peers</a>
+        <a href="#" class="nav-item" data-target="reports"
+          >🚩 Reports
+          <span class="badge" id="reportBadge" style="display: none">0</span></a
+        >
+        <a href="#" class="nav-item" data-target="logs">📜 System Logs</a>
+      </nav>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+    <main class="content">
+      <header>
+        <h1 id="pageTitle">User Management</h1>
+        <div class="user-info">
+          Logged in as: <span id="adminUsername">Admin</span>
+        </div>
+      </header>
+
+      <section id="users" class="page-section active">
+        <div class="card">
+          <div class="card-header">
+            <h2>Manage Users</h2>
+            <button id="addUserBtn" class="btn btn-primary">Add User</button>
+          </div>
+          <div class="table-container">
+            <table id="usersTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="peers" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Connected Peers (WebSocket)</h2>
+            <button id="refreshPeersBtn" class="btn btn-secondary">
+              Refresh
+            </button>
+          </div>
+          <div class="grid-container" id="peersGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <section id="reports" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>User Reports</h2>
+            <button id="refreshReportsBtn" class="btn btn-secondary">
+              Refresh
+            </button>
+          </div>
+          <div class="table-container">
+            <table id="reportsTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Reporter</th>
+                  <th>Context</th>
+                  <th>Reason</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="logs" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Live Server Logs</h2>
+            <button id="refreshLogsBtn" class="btn btn-secondary">
+              Refresh Logs
+            </button>
+          </div>
+          <pre class="log-container" id="logsContainer">Loading logs...</pre>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal for adding user -->
+    <div id="addUserModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Create New User</h2>
+        <form id="addUserForm">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="newUsername" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="newPassword" required />
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <select id="newRole">
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

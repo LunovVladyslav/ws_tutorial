@@ -39,6 +39,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 if (jwtUtil.isTokenValid(jwt, username)) {
+                    dev.lunov.p2p_server.repository.UserRepository userRepository = 
+                        org.springframework.web.context.support.WebApplicationContextUtils
+                        .getRequiredWebApplicationContext(request.getServletContext())
+                        .getBean(dev.lunov.p2p_server.repository.UserRepository.class);
+
+                    java.util.Optional<dev.lunov.p2p_server.model.User> optUser = userRepository.findByUsername(username);
+                    if (optUser.isPresent() && optUser.get().isBanned()) {
+                        response.sendError(HttpServletResponse.SC_FORBIDDEN, "User is banned until " + optUser.get().getBannedUntil());
+                        return;
+                    }
+
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             username, null, Collections.singletonList(new SimpleGrantedAuthority(role))
                     );

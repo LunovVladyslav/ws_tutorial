@@ -19,6 +19,9 @@ public class AuthChannelInterceptor implements ChannelInterceptor {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private dev.lunov.p2p_server.repository.UserRepository userRepository;
+
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {
         StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
@@ -43,6 +46,14 @@ public class AuthChannelInterceptor implements ChannelInterceptor {
                     String role = jwtUtil.extractRole(token);
                     
                     if (jwtUtil.isTokenValid(token, username)) {
+                        if (userRepository != null) {
+                            java.util.Optional<dev.lunov.p2p_server.model.User> optUser = userRepository.findByUsername(username);
+                            if (optUser.isPresent() && optUser.get().isBanned()) {
+                                System.err.println("❌ Blocking WebSocket connection for banned user: " + username);
+                                throw new IllegalArgumentException("User is banned until " + optUser.get().getBannedUntil());
+                            }
+                        }
+
                         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                                 username, null, Collections.singletonList(new SimpleGrantedAuthority(role))
                         );

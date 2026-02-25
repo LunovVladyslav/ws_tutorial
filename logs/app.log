@@ -1,0 +1,195 @@
+2026-02-25T09:07:07.757+01:00  INFO 9904 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Starting P2pServerApplication using Java 25.0.2 with PID 9904 (C:\Users\vlady\Desktop\Projects\p2p_server\target\classes started by vlady in C:\Users\vlady\Desktop\Projects\p2p_server)
+2026-02-25T09:07:07.762+01:00  INFO 9904 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-02-25T09:07:08.513+01:00  INFO 9904 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-25T09:07:08.586+01:00  INFO 9904 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 2 JPA repository interfaces.
+2026-02-25T09:07:09.211+01:00  INFO 9904 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-25T09:07:09.225+01:00  INFO 9904 --- [p2p_server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-25T09:07:09.225+01:00  INFO 9904 --- [p2p_server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-25T09:07:09.280+01:00  INFO 9904 --- [p2p_server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1456 ms
+2026-02-25T09:07:09.409+01:00  INFO 9904 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-25T09:07:09.646+01:00  INFO 9904 --- [p2p_server] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:47884b65-3465-4c67-8e51-4526010bccf7 user=SA
+2026-02-25T09:07:09.649+01:00  INFO 9904 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-25T09:07:09.682+01:00  INFO 9904 --- [p2p_server] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-25T09:07:09.727+01:00  INFO 9904 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-25T09:07:10.202+01:00  INFO 9904 --- [p2p_server] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-25T09:07:10.281+01:00  INFO 9904 --- [p2p_server] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:47884b65-3465-4c67-8e51-4526010bccf7]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 47884B65-3465-4C67-8E51-4526010BCCF7/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-25T09:07:11.219+01:00  INFO 9904 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-25T09:07:11.277+01:00  INFO 9904 --- [p2p_server] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:07:11.356+01:00  INFO 9904 --- [p2p_server] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-25T09:07:11.755+01:00  WARN 9904 --- [p2p_server] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-25T09:07:11.843+01:00  INFO 9904 --- [p2p_server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-02-25T09:07:12.211+01:00  INFO 9904 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-02-25T09:07:12.213+01:00  INFO 9904 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@63b0aeb1]]
+2026-02-25T09:07:12.213+01:00  INFO 9904 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-02-25T09:07:12.243+01:00  INFO 9904 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-25T09:07:12.250+01:00  INFO 9904 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Started P2pServerApplication in 5.057 seconds (process running for 7.134)
+2026-02-25T09:07:37.866+01:00  INFO 9904 --- [p2p_server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-25T09:07:37.866+01:00  INFO 9904 --- [p2p_server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-25T09:07:37.870+01:00  INFO 9904 --- [p2p_server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-02-25T09:08:12.213+01:00  INFO 9904 --- [p2p_server] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 12]
+2026-02-25T09:10:58.710+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-25T09:10:58.731+01:00  INFO 9904 --- [p2p_server] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-25T09:10:58.736+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-02-25T09:10:58.736+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@63b0aeb1]]
+2026-02-25T09:10:58.737+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-02-25T09:10:58.740+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:10:58.744+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-25T09:10:58.747+01:00  INFO 9904 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-25T09:11:39.828+01:00  INFO 13748 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Starting P2pServerApplication using Java 25.0.2 with PID 13748 (C:\Users\vlady\Desktop\Projects\p2p_server\target\classes started by vlady in C:\Users\vlady\Desktop\Projects\p2p_server)
+2026-02-25T09:11:39.832+01:00  INFO 13748 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-02-25T09:11:41.975+01:00  INFO 13748 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-25T09:11:42.255+01:00  INFO 13748 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 253 ms. Found 2 JPA repository interfaces.
+2026-02-25T09:11:44.721+01:00  INFO 13748 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-25T09:11:44.778+01:00  INFO 13748 --- [p2p_server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-25T09:11:44.779+01:00  INFO 13748 --- [p2p_server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-25T09:11:45.059+01:00  INFO 13748 --- [p2p_server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 5112 ms
+2026-02-25T09:11:46.230+01:00  INFO 13748 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-25T09:11:46.828+01:00  INFO 13748 --- [p2p_server] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:7af10b40-a891-4c42-88e6-f632ef8918df user=SA
+2026-02-25T09:11:46.833+01:00  INFO 13748 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-25T09:11:46.969+01:00  INFO 13748 --- [p2p_server] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-25T09:11:47.214+01:00  INFO 13748 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-25T09:11:49.550+01:00  INFO 13748 --- [p2p_server] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-25T09:11:50.093+01:00  INFO 13748 --- [p2p_server] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:7af10b40-a891-4c42-88e6-f632ef8918df]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 7AF10B40-A891-4C42-88E6-F632EF8918DF/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-25T09:11:52.915+01:00  INFO 13748 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-25T09:11:53.072+01:00  INFO 13748 --- [p2p_server] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:11:53.811+01:00  INFO 13748 --- [p2p_server] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-25T09:11:55.511+01:00  WARN 13748 --- [p2p_server] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-25T09:11:55.794+01:00  INFO 13748 --- [p2p_server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-02-25T09:11:59.092+01:00  INFO 13748 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-02-25T09:11:59.135+01:00  INFO 13748 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1a99d328]]
+2026-02-25T09:11:59.147+01:00  INFO 13748 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-02-25T09:11:59.326+01:00  INFO 13748 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-25T09:11:59.423+01:00  INFO 13748 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Started P2pServerApplication in 20.741 seconds (process running for 21.874)
+2026-02-25T09:12:15.871+01:00  INFO 13748 --- [p2p_server] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-25T09:12:15.871+01:00  INFO 13748 --- [p2p_server] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-25T09:12:15.875+01:00  INFO 13748 --- [p2p_server] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-25T09:12:59.105+01:00  INFO 13748 --- [p2p_server] [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 12]
+2026-02-25T09:15:17.889+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-25T09:15:17.905+01:00  INFO 13748 --- [p2p_server] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-25T09:15:17.910+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-02-25T09:15:17.911+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1a99d328]]
+2026-02-25T09:15:17.911+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-02-25T09:15:17.918+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:15:17.927+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-25T09:15:17.931+01:00  INFO 13748 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-25T09:15:21.827+01:00  INFO 4604 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Starting P2pServerApplication using Java 25.0.2 with PID 4604 (C:\Users\vlady\Desktop\Projects\p2p_server\target\classes started by vlady in C:\Users\vlady\Desktop\Projects\p2p_server)
+2026-02-25T09:15:21.833+01:00  INFO 4604 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-02-25T09:15:22.834+01:00  INFO 4604 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-25T09:15:22.900+01:00  INFO 4604 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 2 JPA repository interfaces.
+2026-02-25T09:15:23.590+01:00  INFO 4604 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-25T09:15:23.607+01:00  INFO 4604 --- [p2p_server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-25T09:15:23.607+01:00  INFO 4604 --- [p2p_server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-25T09:15:23.679+01:00  INFO 4604 --- [p2p_server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1773 ms
+2026-02-25T09:15:23.887+01:00  INFO 4604 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-25T09:15:24.110+01:00  INFO 4604 --- [p2p_server] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:89f4b77a-d91d-4a9e-a4f2-6bd8a1899300 user=SA
+2026-02-25T09:15:24.114+01:00  INFO 4604 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-25T09:15:24.163+01:00  INFO 4604 --- [p2p_server] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-25T09:15:24.238+01:00  INFO 4604 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-25T09:15:24.881+01:00  INFO 4604 --- [p2p_server] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-25T09:15:24.987+01:00  INFO 4604 --- [p2p_server] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:89f4b77a-d91d-4a9e-a4f2-6bd8a1899300]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 89F4B77A-D91D-4A9E-A4F2-6BD8A1899300/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-25T09:15:26.374+01:00  INFO 4604 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-25T09:15:26.436+01:00  INFO 4604 --- [p2p_server] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:15:26.549+01:00  INFO 4604 --- [p2p_server] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-25T09:15:27.086+01:00  WARN 4604 --- [p2p_server] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-25T09:15:27.222+01:00  INFO 4604 --- [p2p_server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-02-25T09:15:27.739+01:00  INFO 4604 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-02-25T09:15:27.740+01:00  INFO 4604 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1a99d328]]
+2026-02-25T09:15:27.740+01:00  INFO 4604 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-02-25T09:15:27.760+01:00  INFO 4604 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-25T09:15:27.768+01:00  INFO 4604 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Started P2pServerApplication in 6.791 seconds (process running for 7.635)
+2026-02-25T09:16:27.741+01:00  INFO 4604 --- [p2p_server] [MessageBroker-7] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 12]
+2026-02-25T09:18:17.369+01:00  INFO 4604 --- [p2p_server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-25T09:18:17.370+01:00  INFO 4604 --- [p2p_server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-25T09:18:17.373+01:00  INFO 4604 --- [p2p_server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-02-25T09:18:33.693+01:00  INFO 4604 --- [p2p_server] [clientInboundChannel-4] d.l.p.controller.SignalController        : Registered peer: android-Android SDK built for x86_64-b4b672b4f69de971 at 10.0.2.16 (session: f26484a9-b230-7d60-33e7-cf3a0c468bbe)
+2026-02-25T09:18:33.903+01:00  INFO 4604 --- [p2p_server] [clientInboundChannel-10] d.l.p.controller.SignalController        : Registered peer: android-Android SDK built for x86_64-b4b672b4f69de971 at 10.0.2.16 (session: 7361c34b-8567-85eb-03ce-65226f20aac8)
+2026-02-25T09:20:29.149+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-25T09:20:29.414+01:00  INFO 4604 --- [p2p_server] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-25T09:20:29.448+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-02-25T09:20:29.448+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1a99d328]]
+2026-02-25T09:20:29.448+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-02-25T09:20:29.453+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:20:29.469+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-25T09:20:29.761+01:00  INFO 4604 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-25T09:20:37.166+01:00  INFO 3480 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Starting P2pServerApplication using Java 25.0.2 with PID 3480 (C:\Users\vlady\Desktop\Projects\p2p_server\target\classes started by vlady in C:\Users\vlady\Desktop\Projects\p2p_server)
+2026-02-25T09:20:37.183+01:00  INFO 3480 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-02-25T09:20:39.713+01:00  INFO 3480 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-25T09:20:39.838+01:00  INFO 3480 --- [p2p_server] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 109 ms. Found 2 JPA repository interfaces.
+2026-02-25T09:20:41.171+01:00  INFO 3480 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-25T09:20:41.199+01:00  INFO 3480 --- [p2p_server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-25T09:20:41.200+01:00  INFO 3480 --- [p2p_server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-25T09:20:41.310+01:00  INFO 3480 --- [p2p_server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3912 ms
+2026-02-25T09:20:41.627+01:00  INFO 3480 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-25T09:20:42.039+01:00  INFO 3480 --- [p2p_server] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:882ffe03-d155-48ab-9152-dca58951d481 user=SA
+2026-02-25T09:20:42.041+01:00  INFO 3480 --- [p2p_server] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-25T09:20:42.114+01:00  INFO 3480 --- [p2p_server] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-25T09:20:42.207+01:00  INFO 3480 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-25T09:20:43.074+01:00  INFO 3480 --- [p2p_server] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-25T09:20:43.193+01:00  INFO 3480 --- [p2p_server] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:882ffe03-d155-48ab-9152-dca58951d481]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: 882FFE03-D155-48AB-9152-DCA58951D481/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-25T09:20:44.755+01:00  INFO 3480 --- [p2p_server] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-25T09:20:44.803+01:00  INFO 3480 --- [p2p_server] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T09:20:44.909+01:00  INFO 3480 --- [p2p_server] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-25T09:20:45.551+01:00  WARN 3480 --- [p2p_server] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-25T09:20:45.845+01:00  INFO 3480 --- [p2p_server] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-02-25T09:20:47.015+01:00  INFO 3480 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-02-25T09:20:47.016+01:00  INFO 3480 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1a99d328]]
+2026-02-25T09:20:47.018+01:00  INFO 3480 --- [p2p_server] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-02-25T09:20:47.037+01:00  INFO 3480 --- [p2p_server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-25T09:20:47.047+01:00  INFO 3480 --- [p2p_server] [main] d.lunov.p2p_server.P2pServerApplication  : Started P2pServerApplication in 11.042 seconds (process running for 11.932)
+2026-02-25T09:21:03.912+01:00  INFO 3480 --- [p2p_server] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-25T09:21:03.913+01:00  INFO 3480 --- [p2p_server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-25T09:21:03.917+01:00  INFO 3480 --- [p2p_server] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-02-25T09:21:47.018+01:00  INFO 3480 --- [p2p_server] [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 12]
+2026-02-25T09:51:47.022+01:00  INFO 3480 --- [p2p_server] [MessageBroker-7] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 373]
+2026-02-25T10:21:20.979+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-25T10:21:21.014+01:00  INFO 3480 --- [p2p_server] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-25T10:21:21.024+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-02-25T10:21:21.024+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1a99d328]]
+2026-02-25T10:21:21.025+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-02-25T10:21:21.039+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-25T10:21:21.070+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-25T10:21:21.073+01:00  INFO 3480 --- [p2p_server] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

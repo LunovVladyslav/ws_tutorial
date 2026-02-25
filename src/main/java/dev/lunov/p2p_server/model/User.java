@@ -20,6 +20,9 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    @Column(name = "banned_until")
+    private java.time.LocalDateTime bannedUntil;
+
     public User() {}
 
     public User(String username, String password, Role role) {
@@ -35,4 +38,11 @@ public class User {
     public void setPassword(String password) { this.password = password; }
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
+    
+    public java.time.LocalDateTime getBannedUntil() { return bannedUntil; }
+    public void setBannedUntil(java.time.LocalDateTime bannedUntil) { this.bannedUntil = bannedUntil; }
+    
+    public boolean isBanned() {
+        return bannedUntil != null && bannedUntil.isAfter(java.time.LocalDateTime.now());
+    }
 }

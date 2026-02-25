@@ -26,19 +26,39 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @GetMapping("/check-username")
+    public ResponseEntity<?> checkUsername(@RequestParam String username) {
+        if (username == null || username.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Username required");
+        }
+        boolean isAvailable = userRepository.findByUsername(username.trim()).isEmpty();
+        return ResponseEntity.ok(java.util.Collections.singletonMap("available", isAvailable));
+    }
+
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody AuthRequest request) {
         if (request.getUsername() == null || request.getPassword() == null) {
             return ResponseEntity.badRequest().body(new AuthResponse("Username and password required"));
         }
+        
+        String username = request.getUsername().trim();
+        String password = request.getPassword().trim();
 
-        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+        if (!username.matches("^[a-zA-Z0-9]{3,20}$")) {
+            return ResponseEntity.badRequest().body(new AuthResponse("Username must contain only 3-20 letters and digits"));
+        }
+
+        if (password.length() < 6) {
+            return ResponseEntity.badRequest().body(new AuthResponse("Password must be at least 6 characters long"));
+        }
+
+        if (userRepository.findByUsername(username).isPresent()) {
             return ResponseEntity.badRequest().body(new AuthResponse("Username already exists"));
         }
 
         User newUser = new User(
-                request.getUsername(),
-                passwordEncoder.encode(request.getPassword()),
+                username,
+                passwordEncoder.encode(password),
                 Role.USER // By default, new registrations are regular users
         );
         userRepository.save(newUser);
@@ -56,6 +76,10 @@ public class AuthController {
         }
 
         User user = optUser.get();
+        if (user.isBanned()) {
+            return ResponseEntity.status(403).body(new AuthResponse("Account is banned until " + user.getBannedUntil()));
+        }
+
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
         
         return ResponseEntity.ok(new AuthResponse(token, user.getUsername(), user.getRole().name()));

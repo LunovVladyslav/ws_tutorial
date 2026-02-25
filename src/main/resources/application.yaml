@@ -11,3 +11,7 @@ admin:
 
 jwt:
   secret: ${JWT_SECRET:NexusSuperSecretKeyForP2PPlatform2026}
+
+logging:
+  file:
+    name: logs/app.log
