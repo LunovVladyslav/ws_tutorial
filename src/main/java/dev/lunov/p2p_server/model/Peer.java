@@ -7,6 +7,7 @@ public record Peer (
          String displayName,
          boolean online,
          String status,
-         String avatarBase64
+         String avatarBase64,
+         String publicKey
 ) {
 }
