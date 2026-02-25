@@ -27,11 +27,11 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll() // Login & Register open
                 .requestMatchers("/api/admin/**").hasRole("ADMIN") // Only ADMIN
-                .requestMatchers("/admin.html", "/admin.css", "/admin.js", "/login.html", "/login.css", "/login.js").permitAll() // Static files handled by JS auth
+                .requestMatchers("/", "/admin.html", "/admin.css", "/admin.js", "/login.html", "/login.css", "/login.js", "/error").permitAll() // Static files handled by JS auth
                 .requestMatchers("/signal/**").permitAll() // Initial WS Handshake is open (STOMP interceptor handles auth)
                 .anyRequest().authenticated()
             )
-            .httpBasic(Customizer.withDefaults())
+            .httpBasic(AbstractHttpConfigurer::disable)
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
