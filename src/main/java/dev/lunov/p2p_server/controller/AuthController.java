@@ -69,9 +69,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
-        Optional<User> optUser = userRepository.findByUsername(request.getUsername());
+        String username = request.getUsername() != null ? request.getUsername().trim() : "";
+        String password = request.getPassword() != null ? request.getPassword().trim() : "";
+        
+        Optional<User> optUser = userRepository.findByUsername(username);
 
-        if (optUser.isEmpty() || !passwordEncoder.matches(request.getPassword(), optUser.get().getPassword())) {
+        if (optUser.isEmpty() || !passwordEncoder.matches(password, optUser.get().getPassword())) {
             return ResponseEntity.status(401).body(new AuthResponse("Invalid username or password"));
         }
 
