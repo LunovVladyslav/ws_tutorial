@@ -23,12 +23,22 @@ public class User {
     @Column(name = "banned_until")
     private java.time.LocalDateTime bannedUntil;
 
+    @Column(name = "biometric_token")
+    private String biometricToken;
+
     public User() {}
 
     public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String username, String password, Role role, String biometricToken) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.biometricToken = biometricToken;
     }
 
     public Long getId() { return id; }
@@ -41,6 +51,9 @@ public class User {
     
     public java.time.LocalDateTime getBannedUntil() { return bannedUntil; }
     public void setBannedUntil(java.time.LocalDateTime bannedUntil) { this.bannedUntil = bannedUntil; }
+    
+    public String getBiometricToken() { return biometricToken; }
+    public void setBiometricToken(String biometricToken) { this.biometricToken = biometricToken; }
     
     public boolean isBanned() {
         return bannedUntil != null && bannedUntil.isAfter(java.time.LocalDateTime.now());

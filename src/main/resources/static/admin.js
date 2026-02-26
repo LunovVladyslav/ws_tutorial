@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target === 'peers') loadPeers();
             if (target === 'logs') loadLogs();
             if (target === 'reports') loadReports();
+            if (target === 'channels') loadChannels();
+            if (target === 'app-config') loadAppConfig();
         });
     });
 
@@ -184,6 +186,74 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) { console.error(e); }
     };
 
+    // ---------------- Channels ----------------
+    async function loadChannels() {
+        try {
+            const res = await fetch('/api/admin/channels', { headers: authHeaders });
+            if (!res.ok) throw new Error('Failed to load channels');
+            const channelsObj = await res.json();
+            
+            const tbody = document.querySelector('#channelsTable tbody');
+            tbody.innerHTML = '';
+            
+            const entries = Object.entries(channelsObj);
+            if (entries.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No public channels found.</td></tr>';
+            } else {
+                entries.forEach(([id, channel]) => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${channel.id}</td>
+                            <td>${channel.name}</td>
+                            <td>${channel.tags || '-'}</td>
+                            <td>${channel.creatorId}</td>
+                            <td>
+                                <button class="btn btn-danger" onclick="deleteChannel('${channel.id}')">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    window.deleteChannel = async (id) => {
+        if (!confirm('Are you sure you want to delete this channel?')) return;
+        try {
+            const res = await fetch(`/api/admin/channels/${id}`, {
+                method: 'DELETE',
+                headers: authHeaders
+            });
+            if (res.ok) loadChannels();
+            else alert('Failed to delete channel');
+        } catch (e) { console.error(e); }
+    };
+
+    document.getElementById('addChannelBtn').addEventListener('click', () => {
+        document.getElementById('addChannelModal').style.display = 'flex';
+    });
+
+    document.getElementById('addChannelForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('newChannelName').value;
+        const tags = document.getElementById('newChannelTags').value;
+
+        try {
+            const res = await fetch('/api/admin/channels', {
+                method: 'POST',
+                headers: authHeaders,
+                body: JSON.stringify({ name, tags })
+            });
+            if (res.ok) {
+                document.getElementById('addChannelModal').style.display = 'none';
+                loadChannels();
+                e.target.reset();
+            } else {
+                alert(await res.text());
+            }
+        } catch (err) { console.error(err); }
+    });
+
     // ---------------- Peers ----------------
     document.getElementById('refreshPeersBtn').addEventListener('click', loadPeers);
     async function loadPeers() {
@@ -282,6 +352,91 @@ document.addEventListener('DOMContentLoaded', () => {
             container.textContent = 'Error loading logs: ' + e.message;
         }
     }
+
+    // ---------------- System Notifications ----------------
+    document.getElementById('broadcastForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = document.getElementById('broadcastMessage').value;
+        
+        if (!confirm('Are you sure you want to broadcast this message to ALL online users?')) return;
+
+        try {
+            const res = await fetch('/api/admin/notifications', {
+                method: 'POST',
+                headers: authHeaders,
+                body: JSON.stringify({ message })
+            });
+            
+            if (res.ok) {
+                alert('System notification broadcasted successfully!');
+                e.target.reset();
+            } else {
+                alert('Failed to send broadcast');
+            }
+        } catch (err) { console.error(err); }
+    });
+
+    // ---------------- App Configuration ----------------
+    async function loadAppConfig() {
+        try {
+            const res = await fetch('/api/config/version');
+            if (!res.ok) throw new Error('Failed to load app config');
+            const data = await res.json();
+            
+            document.getElementById('configVersion').value = data.version || '';
+            document.getElementById('configNotes').value = data.releaseNotes || '';
+            // Only set external URL if it is not the backend download API
+            if (data.downloadUrl && !data.downloadUrl.includes('/api/config/download-apk')) {
+                document.getElementById('configExternalUrl').value = data.downloadUrl;
+            } else {
+                document.getElementById('configExternalUrl').value = '';
+            }
+        } catch (err) { console.error(err); }
+    }
+
+    document.getElementById('appConfigForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const version = document.getElementById('configVersion').value;
+        const notes = document.getElementById('configNotes').value;
+        const externalUrl = document.getElementById('configExternalUrl').value;
+        const apkFile = document.getElementById('configApkFile').files[0];
+        const sendNotification = document.getElementById('configSendNotification').checked;
+
+        const formData = new FormData();
+        formData.append('version', version);
+        formData.append('releaseNotes', notes);
+        if (externalUrl) formData.append('externalUrl', externalUrl);
+        if (apkFile) formData.append('apkFile', apkFile);
+
+        try {
+            // Note: with FormData we should NOT explicitly set Content-Type header to application/json.
+            // fetch will automatically set it to multipart/form-data with the correct boundary if omitted.
+            const res = await fetch('/api/admin/config/version', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            });
+
+            if (res.ok) {
+                alert('App version configuration updated successfully!');
+                
+                if (sendNotification) {
+                    // Send system broadcast
+                    await fetch('/api/admin/notifications', {
+                        method: 'POST',
+                        headers: authHeaders,
+                        body: JSON.stringify({ 
+                            message: `Нова версія ${version} доступна для завантаження! Зайдіть у Налаштування додатку, щоб оновитись.` 
+                        })
+                    });
+                }
+                loadAppConfig(); // reload
+            } else {
+                alert('Failed to update configuration: ' + await res.text());
+            }
+        } catch (err) { console.error(err); }
+    });
 
     // Initialize 
     loadUsers();

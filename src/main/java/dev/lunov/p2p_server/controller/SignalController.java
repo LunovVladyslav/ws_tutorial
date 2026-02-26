@@ -139,6 +139,38 @@ public class SignalController {
         return publicChannels;
     }
 
+    public void addPublicChannel(PublicChannel channel) {
+        publicChannels.put(channel.id(), channel);
+        logger.info("Admin registered public channel: " + channel.name() + " (id: " + channel.id() + ")");
+        messagingTemplate.convertAndSend("/topic/channels", publicChannels);
+    }
+
+    public void removePublicChannel(String id) {
+        if (publicChannels.remove(id) != null) {
+            logger.info("Admin removed public channel: " + id);
+            messagingTemplate.convertAndSend("/topic/channels", publicChannels);
+        }
+    }
+
+    public void broadcastSystemNotification(String text) {
+        logger.info("Broadcasting system notification: " + text);
+        try {
+            java.util.Map<String, Object> sysMsg = new java.util.HashMap<>();
+            sysMsg.put("senderId", "system_admin");
+            sysMsg.put("senderName", "Системне сповіщення");
+            sysMsg.put("text", text);
+            sysMsg.put("type", "text");
+            sysMsg.put("timestamp", System.currentTimeMillis());
+            
+            String jsonPayload = new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(sysMsg);
+            for (String peerId : peers.keySet()) {
+                messagingTemplate.convertAndSend("/topic/message/" + peerId, jsonPayload);
+            }
+        } catch (Exception e) {
+            logger.warning("Failed to broadcast system notification: " + e.getMessage());
+        }
+    }
+
     // --- File transfer signaling ---
 
     @MessageMapping("/file/request/{targetId}")

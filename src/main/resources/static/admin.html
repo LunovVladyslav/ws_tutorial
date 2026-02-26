@@ -16,11 +16,14 @@
       <nav>
         <a href="#" class="nav-item active" data-target="users">👥 Users</a>
         <a href="#" class="nav-item" data-target="peers">🔗 Active Peers</a>
+        <a href="#" class="nav-item" data-target="channels">💬 Channels</a>
         <a href="#" class="nav-item" data-target="reports"
           >🚩 Reports
           <span class="badge" id="reportBadge" style="display: none">0</span></a
         >
         <a href="#" class="nav-item" data-target="logs">📜 System Logs</a>
+        <a href="#" class="nav-item" data-target="notifications">📢 Notifications</a>
+        <a href="#" class="nav-item" data-target="app-config">📱 App Version</a>
       </nav>
       <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
@@ -71,6 +74,31 @@
         </div>
       </section>
 
+      <section id="channels" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Manage Public Channels</h2>
+            <button id="addChannelBtn" class="btn btn-primary">Add Channel</button>
+          </div>
+          <div class="table-container">
+            <table id="channelsTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Tags</th>
+                  <th>Creator</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section id="reports" class="page-section">
         <div class="card">
           <div class="card-header">
@@ -111,12 +139,70 @@
           <pre class="log-container" id="logsContainer">Loading logs...</pre>
         </div>
       </section>
+
+      <section id="notifications" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Broadcast System Notification</h2>
+          </div>
+          <div style="padding: 20px;">
+            <p style="color: var(--text-muted); margin-bottom: 20px;">
+              Send an official server message to all currently connected peers. This will instantly appear in their active chats.
+            </p>
+            <form id="broadcastForm">
+              <div class="form-group">
+                <label>Message Content</label>
+                <textarea id="broadcastMessage" required rows="4" style="width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 12px; background: var(--bg-primary); color: var(--text-secondary);"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Send Broadcast</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="app-config" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Manage App Version</h2>
+          </div>
+          <div style="padding: 20px;">
+            <p style="color: var(--text-muted); margin-bottom: 20px;">
+              Update the latest version of the application. Provide either an APK file to upload to the server, or an external download link.
+            </p>
+            <form id="appConfigForm" enctype="multipart/form-data">
+              <div class="form-group">
+                <label>Latest Version</label>
+                <input type="text" id="configVersion" required placeholder="e.g. 1.0.1" />
+              </div>
+              <div class="form-group">
+                <label>Release Notes</label>
+                <textarea id="configNotes" rows="3" style="width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 12px; background: var(--bg-primary); color: var(--text-secondary);"></textarea>
+              </div>
+              <div class="form-group" style="margin-top: 15px;">
+                <label>Upload APK File</label>
+                <input type="file" id="configApkFile" accept=".apk" style="display: block; width: 100%; margin-top: 5px; color: var(--text-secondary);" />
+                <small style="color: var(--text-muted);">Leave empty if providing an external link.</small>
+              </div>
+              <div class="form-group" style="margin-top: 15px;">
+                <label>External Download URL (Optional)</label>
+                <input type="url" id="configExternalUrl" placeholder="https://example.com/app.apk" />
+                <small style="color: var(--text-muted);">Leave empty if uploading a file.</small>
+              </div>
+              <div class="form-group" style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="configSendNotification" checked style="width: auto;" />
+                <label for="configSendNotification" style="margin: 0;">Broadcast "New Update Available" notification</label>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Save Configuration</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Modal for adding user -->
     <div id="addUserModal" class="modal">
       <div class="modal-content">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn" data-modal="addUserModal">&times;</span>
         <h2>Create New User</h2>
         <form id="addUserForm">
           <div class="form-group">
@@ -133,6 +219,25 @@
               <option value="USER">USER</option>
               <option value="ADMIN">ADMIN</option>
             </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal for adding channel -->
+    <div id="addChannelModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" data-modal="addChannelModal">&times;</span>
+        <h2>Create Public Channel</h2>
+        <form id="addChannelForm">
+          <div class="form-group">
+            <label>Channel Name</label>
+            <input type="text" id="newChannelName" required />
+          </div>
+          <div class="form-group">
+            <label>Tags (comma separated)</label>
+            <input type="text" id="newChannelTags" />
           </div>
           <button type="submit" class="btn btn-primary w-100">Create</button>
         </form>

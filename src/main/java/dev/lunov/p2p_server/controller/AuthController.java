@@ -2,6 +2,7 @@ package dev.lunov.p2p_server.controller;
 
 import dev.lunov.p2p_server.dto.AuthRequest;
 import dev.lunov.p2p_server.dto.AuthResponse;
+import dev.lunov.p2p_server.dto.ResetPasswordRequest;
 import dev.lunov.p2p_server.model.Role;
 import dev.lunov.p2p_server.model.User;
 import dev.lunov.p2p_server.repository.UserRepository;
@@ -59,7 +60,8 @@ public class AuthController {
         User newUser = new User(
                 username,
                 passwordEncoder.encode(password),
-                Role.USER // By default, new registrations are regular users
+                Role.USER, // By default, new registrations are regular users
+                request.getBiometricToken()
         );
         userRepository.save(newUser);
 
@@ -86,5 +88,36 @@ public class AuthController {
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
         
         return ResponseEntity.ok(new AuthResponse(token, user.getUsername(), user.getRole().name()));
+    }
+    
+    @PostMapping("/reset-password")
+    public ResponseEntity<AuthResponse> resetPassword(@RequestBody ResetPasswordRequest request) {
+        if (request.getUsername() == null || request.getNewPassword() == null || request.getBiometricToken() == null) {
+            return ResponseEntity.badRequest().body(new AuthResponse("Username, new password, and biometric token are required"));
+        }
+
+        String username = request.getUsername().trim();
+        String newPassword = request.getNewPassword().trim();
+        String token = request.getBiometricToken().trim();
+
+        if (newPassword.length() < 6) {
+            return ResponseEntity.badRequest().body(new AuthResponse("Password must be at least 6 characters long"));
+        }
+
+        Optional<User> optUser = userRepository.findByUsername(username);
+        if (optUser.isEmpty()) {
+            return ResponseEntity.badRequest().body(new AuthResponse("User not found"));
+        }
+
+        User user = optUser.get();
+        if (user.getBiometricToken() == null || !user.getBiometricToken().equals(token)) {
+            return ResponseEntity.status(401).body(new AuthResponse("Invalid biometric token"));
+        }
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        String jwt = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
+        return ResponseEntity.ok(new AuthResponse(jwt, user.getUsername(), user.getRole().name()));
     }
 }

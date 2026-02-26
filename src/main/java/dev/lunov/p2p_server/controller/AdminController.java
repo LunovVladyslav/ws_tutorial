@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import dev.lunov.p2p_server.model.PublicChannel;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,6 +31,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AppConfigController appConfigController;
 
     @Autowired
     private ReportRepository reportRepository;
@@ -121,6 +126,58 @@ public class AdminController {
             return ResponseEntity.ok(String.join("\n", last1000));
         } catch (IOException e) {
             return ResponseEntity.internalServerError().body("Error reading logs: " + e.getMessage());
+        }
+    }
+
+    // --- Channels Management ---
+    @GetMapping("/channels")
+    public ResponseEntity<Map<String, PublicChannel>> getAllChannels() {
+        return ResponseEntity.ok(signalController.getChannels());
+    }
+
+    @PostMapping("/channels")
+    public ResponseEntity<?> createChannel(@RequestBody PublicChannel channel) {
+        if (channel.id() == null || channel.id().isEmpty()) {
+            channel = new PublicChannel(
+                java.util.UUID.randomUUID().toString(),
+                channel.name(),
+                channel.tags() != null ? channel.tags() : "",
+                "system_admin"
+            );
+        }
+        signalController.addPublicChannel(channel);
+        return ResponseEntity.ok(channel);
+    }
+
+    @DeleteMapping("/channels/{id}")
+    public ResponseEntity<?> deleteChannel(@PathVariable String id) {
+        signalController.removePublicChannel(id);
+        return ResponseEntity.ok().build();
+    }
+
+    // --- System Notifications ---
+    @PostMapping("/notifications")
+    public ResponseEntity<?> sendSystemNotification(@RequestBody Map<String, String> payload) {
+        String message = payload.get("message");
+        if (message == null || message.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Message cannot be empty");
+        }
+        signalController.broadcastSystemNotification(message);
+        return ResponseEntity.ok().build();
+    }
+
+    // --- App Configuration Update ---
+    @PostMapping("/config/version")
+    public ResponseEntity<?> updateVersion(
+            @RequestParam(required = false) String version,
+            @RequestParam(required = false) String releaseNotes,
+            @RequestParam(required = false) String externalUrl,
+            @RequestParam(required = false) MultipartFile apkFile) {
+        try {
+            appConfigController.updateConfig(version, releaseNotes, externalUrl, apkFile);
+            return ResponseEntity.ok().build();
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError().body("Failed to update config: " + e.getMessage());
         }
     }
 }
